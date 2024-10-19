@@ -1,0 +1,84 @@
+---
+import { Image } from "astro:assets";
+import Logo from "public/logo.png";
+
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Astro description" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.webp" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap"
+            rel="stylesheet"
+        />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+    </head>
+    <body class="text-white bg-section">
+        <main class="overflow-hidden">
+            <section class="bg-gray-50 dark:bg-gray-900">
+                <div
+                    class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+                >
+                    <div
+                        class="flex flex-col items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+                    >
+                        <Image
+                            class="size-48 mr-2"
+                            src={Logo}
+                            alt="Logo Gym Resistencia"
+                            width={150}
+                            height={140}
+                            quality={"max"}
+                        />
+                        <span class="text-gray-600 text-xl tracking-wide"
+                            >Gym Resistencia</span
+                        >
+                    </div>
+                    <div
+                        class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+                    >
+                        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                            <h1
+                                class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+                            >
+                                Iniciar sesión
+                            </h1>
+                            <slot />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <style is:global>
+            html {
+                scroll-behavior: smooth;
+            }
+
+                .btn {
+                    @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+                }
+            .text-label {
+                @apply block mb-2 text-sm font-medium text-gray-900;
+            }
+
+            .text-input {
+                @apply shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-400 focus:border-green-500 block w-full p-2.5;
+
+            }
+        </style>
+    </body>
+</html>
